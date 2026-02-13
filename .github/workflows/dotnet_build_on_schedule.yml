@@ -9,7 +9,7 @@
 # | | | | |
 # * * * * *
 
-name: .NET
+name: Build .NET app on schedule
 
 on:
    schedule:
