@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main","Development" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main","Development" ]
 
 jobs:
   build:
@@ -26,4 +26,7 @@ jobs:
     
     - name: Build
       run: dotnet build BackgroundWorker/BackgroundWorker.csproj --no-restore
+
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
 
