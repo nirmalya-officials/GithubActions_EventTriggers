@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main","Development" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main","Development" ]
 
 jobs:
   build:
@@ -20,10 +20,13 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.x
-    
+    # Working directory for workflow execution: root-directory of repository
     - name: Restore dependencies
       run: dotnet restore BackgroundWorker/BackgroundWorker.csproj
     
     - name: Build
       run: dotnet build BackgroundWorker/BackgroundWorker.csproj --no-restore
+
+    - name: Test
+      run: dotnet test BackgroundWorker_Test/BackgroundWorker_Test.csproj --no-build --verbosity normal
 
