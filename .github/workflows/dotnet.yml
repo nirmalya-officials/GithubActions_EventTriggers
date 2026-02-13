@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.x
-    
+    # Working directory for workflow execution: root-directory of repository
     - name: Restore dependencies
       run: dotnet restore BackgroundWorker/BackgroundWorker.csproj
     
@@ -28,5 +28,5 @@ jobs:
       run: dotnet build BackgroundWorker/BackgroundWorker.csproj --no-restore
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test BackgroundWorker_Test/BackgroundWorker_Test.csproj --no-build --verbosity normal
 
