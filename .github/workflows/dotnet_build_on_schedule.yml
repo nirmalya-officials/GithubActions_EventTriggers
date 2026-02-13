@@ -1,0 +1,41 @@
+# CRON Exression
+#
+# _ _ _ _ _ _ _ _ _ _ _ _ _Minutes(0 - 59)
+# | __ _ _ _ _ _ _ _ _ _ _ Hours(0 - 23)
+# | |  _ _ _ _ _ _ _ _ _ _ Day Of The month(1 - 31)
+# | | | _ _ _ _ _ _ _ _ _ _Month(1 - 12 Or JAN - DEC)
+# | | | |  _ _ _ _ _ _ _ _ Day Of The week(0 - 6 Or SUN - SAT) 
+# | | | | |
+# | | | | |
+# * * * * *
+
+name: .NET
+
+on:
+   schedule:
+   - cron: '*/5 * * * *'
+# This workflow should run on any minute of an hour, divisible by 5 => 5,10,15...55. I.E.
+# All other fields are set to * which means that they will match any value. 
+# So, the workflow will run every 5 minutes, regardless of the hour, day of the month, month, or day of the week.
+
+jobs:
+  build:
+
+   runs-on: ubuntu-latest
+
+   steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.x
+    # Working directory for workflow execution: root-directory of repository
+    - name: Restore dependencies
+      run: dotnet restore BackgroundWorker/BackgroundWorker.csproj
+    
+    - name: Build
+      run: dotnet build BackgroundWorker/BackgroundWorker.csproj --no-restore
+
+    - name: Test
+      run: dotnet test BackgroundWorker_Test/BackgroundWorker_Test.csproj --no-build --verbosity normal
+
