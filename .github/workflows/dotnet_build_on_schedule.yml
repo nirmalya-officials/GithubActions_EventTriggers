@@ -13,7 +13,7 @@ name: Build .NET app on schedule
 
 on:
    schedule:
-   - cron: '*/5 * * * *'
+   - cron: "*/5 * * * *"
 # This workflow should run on any minute of an hour, divisible by 5 => 5,10,15...55. I.E.
 # All other fields are set to * which means that they will match any value. 
 # So, the workflow will run every 5 minutes, regardless of the hour, day of the month, month, or day of the week.
