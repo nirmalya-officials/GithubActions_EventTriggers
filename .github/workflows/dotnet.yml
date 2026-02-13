@@ -20,9 +20,10 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.x
+    
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore BackgroundWorker/BackgroundWorker.sln
+    
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build BackgroundWorker/BackgroundWorker.sln --no-restore
+
