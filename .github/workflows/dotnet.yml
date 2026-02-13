@@ -22,8 +22,8 @@ jobs:
         dotnet-version: 10.x
     
     - name: Restore dependencies
-      run: dotnet restore ../../BackgroundWorker/BackgroundWorker.csproj
+      run: dotnet restore BackgroundWorker/BackgroundWorker.csproj
     
     - name: Build
-      run: dotnet build ../../BackgroundWorker/BackgroundWorker.csproj --no-restore
+      run: dotnet build BackgroundWorker/BackgroundWorker.csproj --no-restore
 
